@@ -7,10 +7,11 @@ class Navbar extends Component {
   state = {
     activeItem: "home"
   };
-  handleItemClick = (e, {name}) => this.setState({activeItem: name});
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+  }
   render() {
     const {activeItem} = this.state;
-
     return (
       <Segment className="navbar" inverted id="navbar-container">
         <Menu attached inverted pointing secondary >
@@ -34,12 +35,26 @@ class Navbar extends Component {
           <Menu.Item position="right">
             <Input className="icon" icon="search" placeholder="Search..." id="searchbar"/>
           </Menu.Item>
-          <Menu.Item
-            name="Sign In"
-            active={activeItem === "users"}
-            onClick={this.handleItemClick}
-            position="right"/>
-          <img src={GithubLogo} alt="github logo"/>
+          {
+            this.props.token ?
+              (
+                <Menu.Item
+                  name="Log Out"
+                  active={activeItem === "users"}
+                  onClick={this.handleItemClick && this.props.logOutUser}
+                position="right"/>
+              )
+              :
+              (
+                <Menu.Item
+                  href="https://github.com/login/oauth/authorize?client_id=e75e8c72d121f49f6a1b"
+                  name="Sign In"
+                  active={activeItem === "users"}
+                  onClick={this.handleItemClick}
+                  position="right" />
+              )
+          }
+          <img src={GithubLogo} alt="github logo" />
         </Menu>
       </Segment>
     )
