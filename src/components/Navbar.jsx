@@ -34,12 +34,12 @@ class Navbar extends Component {
           <Menu.Item position="right">
             <Input className="icon" icon="search" placeholder="Search..." id="searchbar"/>
           </Menu.Item>
-          <img src={GithubLogo} />
           <Menu.Item
             name="Sign In"
             active={activeItem === "users"}
             onClick={this.handleItemClick}
             position="right"/>
+          <img src={GithubLogo} />
         </Menu>
       </Segment>
     )

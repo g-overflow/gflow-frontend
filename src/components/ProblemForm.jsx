@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {Input, TextArea, Form} from "semantic-ui-react"
+import {Button, Input, TextArea, Form} from "semantic-ui-react"
 
 class ProblemForm extends Component {
  render() {
@@ -18,7 +18,7 @@ class ProblemForm extends Component {
     <label>Tags</label>
     <Input focus placeholder='Tags' id='tags-bar'/>
     </Form.Field>
-
+    <Button type='submit'>Submit Your Question</Button>
    </Form>
   )
  }
