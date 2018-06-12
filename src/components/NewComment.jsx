@@ -42,7 +42,8 @@ export default class CommentComposer extends React.Component {
 
   render() {
     return (
-        <Form>
+        <Form className='comment-container'>
+         <Form.Field>
          <TextArea
             name='comment'
             placeholder='Add a comment'
@@ -51,6 +52,7 @@ export default class CommentComposer extends React.Component {
           }} 
            value={this.state.comment} 
            onChange={this.handleCommentChange}/>
+           </Form.Field>
          <Button color="black" type='submit' onClick={this.handleCommentSubmit}>Submit Comment</Button>
         </Form>
     )

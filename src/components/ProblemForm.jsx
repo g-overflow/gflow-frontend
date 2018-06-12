@@ -1,11 +1,18 @@
 import React, {Component} from "react"
-import {Button, Input, TextArea, Form} from "semantic-ui-react"
-const problemsUrl = 'https://galvanize-queue-overflow.herokuapp.com/problems'
+import {Button, Input, TextArea, Form, Dropdown} from "semantic-ui-react"
+const apiUrl = 'https://galvanize-queue-overflow.herokuapp.com/'
 class ProblemForm extends Component {
   state = {
     title: '',
     body: ''
   }
+
+  componentDidMount() {
+    fetch(apiUrl + 'tags')
+      .then(response => response.json())
+      .then(data => this.setState({tags: data}))
+  }
+
   handleFormChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -14,32 +21,30 @@ class ProblemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.updateForm(this.state)
-    const randomUser = Math.floor(Math.random() * 5) + 1 
+    this
+      .props
+      .updateForm(this.state)
+    const randomUser = Math.floor(Math.random() * 5) + 1
     const currentDate = new Date().toJSON()
     const body = {
-        users_id: randomUser,
-        date: currentDate,
-        problem_title: this.state.title,
-        problem_text: this.state.body,
-        problem_solved: false
+      users_id: randomUser,
+      date: currentDate,
+      problem_title: this.state.title,
+      problem_text: this.state.body,
+      problem_solved: false
     }
-
-    return fetch(problemsUrl, {
-        method: 'POST',
-        headers: new Headers({
-            'content-type': 'application/json',
-        }),
-        body: JSON.stringify(body),
-    })
-        .then(response => response.json())
-        .then(response => {
-            return response.error
-                ? this.setState({ error: true })
-                : this.setState({ error: false })
-        })
+    return fetch(apiUrl + 'problems', {
+      method: 'POST',
+      headers: new Headers({'content-type': 'application/json'}),
+        body: JSON.stringify(body)
+      })
+      .then(response => response.json())
+      .then(response => {
+        return response.error
+          ? this.setState({error: true})
+          : this.setState({error: false})
+      })
   }
-
 
   render() {
     return (
@@ -65,7 +70,21 @@ class ProblemForm extends Component {
         </Form.Field>
         <Form.Field>
           <label>Tags</label>
-          <Input placeholder='Tags' id='tags-bar'/>
+          <Dropdown
+            placeholder='Tags'
+            fluid
+            multiple
+            search
+            selection
+            //do this in fetch, variables as options
+            options={this.state.tags
+            ? this
+              .state
+              .tags
+              .map((tag, i) => {
+                return {key: i, value: tag, text: tag}
+              })
+            : ''}/>
         </Form.Field>
         <Button color="black" type='submit' onClick={this.handleSubmit}>Submit Your Question</Button>
       </Form>

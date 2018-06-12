@@ -54,3 +54,10 @@ div.ui.inverted.segment.navbar {
   height: 0;
   visibility: hidden;
 }
+
+.comment-container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 4em;
+  text-align: left;
+}
