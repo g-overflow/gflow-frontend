@@ -33,8 +33,10 @@ div.ui.inverted.segment.navbar {
 
 #search-button {
   margin: 2em;
+  padding: 1em 3em;
 }
 
 #ask-button {
   margin: 2em;
+  padding: 1em 3em;
 }

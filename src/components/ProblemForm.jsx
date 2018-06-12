@@ -18,7 +18,7 @@ class ProblemForm extends Component {
     <label>Tags</label>
     <Input focus placeholder='Tags' id='tags-bar'/>
     </Form.Field>
-    <Button type='submit'>Submit Your Question</Button>
+    <Button color="black" type='submit'>Submit Your Question</Button>
    </Form>
   )
  }
