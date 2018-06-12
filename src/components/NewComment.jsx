@@ -52,7 +52,7 @@ export default class CommentComposer extends React.Component {
           }} 
            value={this.state.comment} 
            onChange={this.handleCommentChange}/>
-           </Form.Field>
+          </Form.Field>
          <Button color="black" type='submit' onClick={this.handleCommentSubmit}>Submit Comment</Button>
         </Form>
     )
