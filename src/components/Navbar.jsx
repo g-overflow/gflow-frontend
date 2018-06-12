@@ -12,8 +12,8 @@ class Navbar extends Component {
     const {activeItem} = this.state;
 
     return (
-      <Segment className="navbar" inverted>
-        <Menu attached inverted pointing secondary id="navbar-container">
+      <Segment className="navbar" inverted id="navbar-container">
+        <Menu attached inverted pointing secondary >
         <img src={GLogo} alt="Galvanize Logo"/>
           <Menu.Item
             name="home"
@@ -39,7 +39,7 @@ class Navbar extends Component {
             active={activeItem === "users"}
             onClick={this.handleItemClick}
             position="right"/>
-          <img src={GithubLogo} />
+          <img src={GithubLogo} alt="github logo"/>
         </Menu>
       </Segment>
     )

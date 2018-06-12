@@ -25,6 +25,7 @@ div.ui.inverted.segment.navbar {
 #navbar-container img {
   height: 3em;
   padding-right: 2em;
+  color: orange;
 }
 
 #title-bar {
