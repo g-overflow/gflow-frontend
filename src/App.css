@@ -1,3 +1,8 @@
+:root {
+  --space: 1.5em 0;
+  --space: 2em 0;
+}
+
 body {
   text-align: center;
 }
@@ -40,4 +45,12 @@ div.ui.inverted.segment.navbar {
 #ask-button {
   margin: 2em;
   padding: 1em 3em;
+}
+
+.Site-content:after {
+  content: ‘\00a0’;
+  display: block;
+  margin-top: var( — space);
+  height: 0;
+  visibility: hidden;
 }

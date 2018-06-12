@@ -1,14 +1,12 @@
 import React, {Component} from "react"
 import {Button, Input, TextArea, Form} from "semantic-ui-react"
-
+const problemsUrl = 'https://galvanize-queue-overflow.herokuapp.com/problems'
 class ProblemForm extends Component {
   state = {
     title: '',
     body: ''
   }
   handleFormChange = (event) => {
-    console.log(event.target.name)
-    console.log(event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -16,11 +14,32 @@ class ProblemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    // console.log(event.target)
-    this
-      .props
-      .updateForm(this.state)
+    this.props.updateForm(this.state)
+    const randomUser = Math.floor(Math.random() * 5) + 1 
+    const currentDate = new Date().toJSON()
+    const body = {
+        users_id: randomUser,
+        date: currentDate,
+        problem_title: this.state.title,
+        problem_text: this.state.body,
+        problem_solved: false
+    }
+
+    return fetch(problemsUrl, {
+        method: 'POST',
+        headers: new Headers({
+            'content-type': 'application/json',
+        }),
+        body: JSON.stringify(body),
+    })
+        .then(response => response.json())
+        .then(response => {
+            return response.error
+                ? this.setState({ error: true })
+                : this.setState({ error: false })
+        })
   }
+
 
   render() {
     return (
