@@ -15,15 +15,31 @@ class App extends Component {
       this.setState({ token: access_token });
     }
   }
+  //   getUser = () => {
+  //     fetch('https://api.github.com/user', {
+  //       headers: { Authorization: 'Bearer ' + access_token }
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         console.log(data);
 
+  //   })
+  // }
   updateForm = formInput => {
     this.setState({
       problem: formInput
     });
   };
-  logOut = () => {
+  logOut = (e) => {
     window.Cookies.remove("galvanize-secrets-token");
+    e.preventDefault()
     this.setState({ token: undefined, loggedIn: false });
+    console.log(
+      "token",
+      this.state.token,
+      "loggedIn",
+      this.state.loggedIn
+    );
   };
   render() {
     console.log(document.cookie);
