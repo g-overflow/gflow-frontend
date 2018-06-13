@@ -28,8 +28,15 @@ class App extends Component {
   updateForm = formInput => {
     this.setState({
       problem: formInput
-    });
-  };
+    })
+  }
+
+  updateComment = (commentInput) => {
+    this.setState({
+      comment: commentInput
+    })
+  }
+
   logOut = (e) => {
     window.Cookies.remove("galvanize-secrets-token");
     e.preventDefault()
@@ -41,6 +48,7 @@ class App extends Component {
       this.state.loggedIn
     );
   };
+
   render() {
     console.log(document.cookie);
     return (
@@ -52,9 +60,10 @@ class App extends Component {
         />
         <ButtonGroup />
         <ProblemForm formState={this.state} updateForm={this.updateForm} />
+        <Footer/>
       </div>
-    );
-  }
+  );
+}
 }
 
 export default App;

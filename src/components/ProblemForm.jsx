@@ -1,14 +1,27 @@
 import React, {Component} from "react"
-import {Button, Input, TextArea, Form} from "semantic-ui-react"
-
+import {Button, Input, TextArea, Form, Dropdown} from "semantic-ui-react"
+const apiUrl = 'https://galvanize-queue-overflow.herokuapp.com/'
 class ProblemForm extends Component {
   state = {
     title: '',
     body: ''
   }
+
+  componentDidMount() {
+    fetch(apiUrl + 'tags')
+      .then(response => response.json())
+      .then(data => this.setState({tags: data}))
+  }
+
+  resetForm = () => {
+    this.setState({
+      title: '',
+      body: '',
+      showResponse: false
+    })
+  }
+
   handleFormChange = (event) => {
-    console.log(event.target.name)
-    console.log(event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -16,11 +29,36 @@ class ProblemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    // console.log(event.target)
-    this
-      .props
-      .updateForm(this.state)
+    this.props.updateForm(this.state)
+    this.setState({
+      showResponse: true
+    })
+    const randomUser = Math.floor(Math.random() * 5) + 1
+    const currentDate = new Date().toJSON()
+    const body = {
+      users_id: randomUser,
+      date: currentDate,
+      problem_title: this.state.title,
+      problem_text: this.state.body,
+      problem_solved: false,
+    }
+    return fetch(apiUrl + 'problems', {
+      method: 'POST',
+      headers: new Headers({'content-type': 'application/json'}),
+        body: JSON.stringify(body)
+      })
+      .then(response => response.json())
+      .then(data => {
+        return data.error
+          ? this.setState({error: true})
+          : this.setState({error: false})
+      })
   }
+
+//onchange post tags, as add new tag, post to join table
+// stores as a tags with values
+// div
+  
 
   render() {
     return (
@@ -46,7 +84,20 @@ class ProblemForm extends Component {
         </Form.Field>
         <Form.Field>
           <label>Tags</label>
-          <Input placeholder='Tags' id='tags-bar'/>
+          <Dropdown
+            placeholder='Tags'
+            fluid
+            multiple
+            search
+            selection
+            options={this.state.tags
+            ? this
+              .state
+              .tags
+              .map((tag, i) => {
+                return {key: i, value: tag.tag_name, text: tag.tag_name}
+              })
+            : ''}/>
         </Form.Field>
         <Button color="black" type='submit' onClick={this.handleSubmit}>Submit Your Question</Button>
       </Form>
