@@ -37,19 +37,6 @@ class App extends Component {
     })
   }
 
-  render() {
-    return ( 
-      <div className = "App">
-        <Navbar />
-        <ButtonGroup />
-        <ProblemForm formState = {this.state}
-        updateForm = {this.updateForm}/> 
-        <NewComment commentState = {this.state}
-        updateComment = {this.updateComment}/> 
-        <Footer / >
-
-});
-  };
   logOut = (e) => {
     window.Cookies.remove("galvanize-secrets-token");
     e.preventDefault()
@@ -61,6 +48,7 @@ class App extends Component {
       this.state.loggedIn
     );
   };
+
   render() {
     console.log(document.cookie);
     return (
@@ -72,6 +60,7 @@ class App extends Component {
         />
         <ButtonGroup />
         <ProblemForm formState={this.state} updateForm={this.updateForm} />
+        <Footer/>
       </div>
   );
 }
