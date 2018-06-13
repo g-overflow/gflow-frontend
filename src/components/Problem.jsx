@@ -3,8 +3,13 @@ import React from 'react';
 class Problem extends React.Component {
   render() {
     return (
-      <div>
-      </div>
+      <Container>
+        <Header as='h2'>Title</Header>
+        <p>Problem Text</p>
+        <Label.Group color='orange'>
+          <Label as='a'>Tag</Label>
+        </Label.Group>
+      </Container>
     )
   }
 }
