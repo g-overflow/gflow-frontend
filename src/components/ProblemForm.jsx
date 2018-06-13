@@ -27,7 +27,6 @@ class ProblemForm extends Component {
       [event.target.name]: event.target.value
     })
   }
-
   postProblemText = (event) => {
     event.preventDefault()
     this.props.updateForm(this.state)
@@ -50,7 +49,6 @@ class ProblemForm extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         return response.id
       })
       .then(response => {
@@ -59,13 +57,11 @@ class ProblemForm extends Component {
           : console.log('fail!')
       })
   }
-
   postProblem = (event) => {
     return this.postProblemText(event).then(id => {
-      this.postTags(id)
-    })
+      return this.postTags(id)
+    }).then(res => this.props.redirectToProblem())
   }
-
   postTags = (id) => {
     this.state.selectedTags.forEach(selectedTag => {
       let filteredTag = this.state.tags.filter(tag => {
@@ -82,16 +78,14 @@ class ProblemForm extends Component {
           body: JSON.stringify(body)
         })
           .then(response => response.json())
-          .then(res => {
-            this.props.redirectToProblem()
+          .then(data => data)
+          .then(data => {
+            return data.error
+              ? this.setState({ error: true })
+              : this.setState({ error: false })
           })
       })
     })
-      .then(data => {
-        return data.error
-          ? this.setState({ error: true })
-          : this.setState({ error: false })
-      })
   }
 
   addTags = (event) => {
