@@ -61,10 +61,9 @@ class App extends Component {
 
   render() {
     console.log(document.cookie);
-    return ( <
-      div className = "App" >
-      <
-      Navbar token = {
+    return ( 
+    <div className = "App">
+      <Navbar token = {
         this.state.token
       }
       loggedIn = {
@@ -72,20 +71,16 @@ class App extends Component {
       }
       logOutUser = {
         this.logOut
-      }
-      /> <
-      ButtonGroup / >
-      <
-      ProblemForm formState = {
+      }/> 
+      <ButtonGroup />
+      <ProblemForm formState = {
         this.state
       }
       updateForm = {
         this.updateForm
-      }
-      /> <
-      Footer / >
-      <
-      /div>
+      }/> 
+      <Footer />
+      </div>
     );
   }
 }
