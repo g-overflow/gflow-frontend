@@ -1,13 +1,10 @@
 import React from "react";
-
-import ProblemItem from "./ProItem";
+import Problem from "./Problem";
 
 const ProblemList = ({ problems }) => {
   return (
     <ul>
-      {problems.map(problem => {
-        return <ProblemItem question={problem} key={problem._uid_} />;
-      })}
+      <li>Hello</li>
     </ul>
   );
 };
