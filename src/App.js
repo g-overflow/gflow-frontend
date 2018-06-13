@@ -1,7 +1,10 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import Navbar from "./components/Navbar";
 import ButtonGroup from "./components/ButtonGroup";
 import ProblemForm from "./components/ProblemForm";
+import Footer from "./components/Footer";
 import "./App.css";
 
 class App extends Component {
@@ -11,8 +14,12 @@ class App extends Component {
   componentDidMount() {
     var access_token = window.Cookies.get("galvanize-secrets-token");
     if (access_token) {
-      this.setState({ loggedIn: true });
-      this.setState({ token: access_token });
+      this.setState({
+        loggedIn: true
+      });
+      this.setState({
+        token: access_token
+      });
     }
   }
   //   getUser = () => {
@@ -40,7 +47,10 @@ class App extends Component {
   logOut = (e) => {
     window.Cookies.remove("galvanize-secrets-token");
     e.preventDefault()
-    this.setState({ token: undefined, loggedIn: false });
+    this.setState({
+      token: undefined,
+      loggedIn: false
+    });
     console.log(
       "token",
       this.state.token,
@@ -51,19 +61,28 @@ class App extends Component {
 
   render() {
     console.log(document.cookie);
-    return (
-      <div className="App">
-        <Navbar
-          token={this.state.token}
-          loggedIn={this.state.loggedIn}
-          logOutUser={this.logOut}
-        />
-        <ButtonGroup />
-        <ProblemForm formState={this.state} updateForm={this.updateForm} />
-        <Footer/>
+    return ( 
+    <div className = "App">
+      <Navbar token = {
+        this.state.token
+      }
+      loggedIn = {
+        this.state.loggedIn
+      }
+      logOutUser = {
+        this.logOut
+      }/> 
+      <ButtonGroup />
+      <ProblemForm formState = {
+        this.state
+      }
+      updateForm = {
+        this.updateForm
+      }/> 
+      <Footer />
       </div>
-  );
-}
+    );
+  }
 }
 
 export default App;
