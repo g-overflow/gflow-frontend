@@ -36,7 +36,7 @@ class Navbar extends Component {
           </Menu.Item>
           <Menu.Item
             name="Sign In"
-            active={activeItem === "users"}
+            active={activeItem === "signin"}
             onClick={this.handleItemClick}
             position="right"/>
           <img src={GithubLogo} alt="github logo"/>

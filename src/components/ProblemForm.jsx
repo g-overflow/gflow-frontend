@@ -55,6 +55,9 @@ class ProblemForm extends Component {
       })
   }
 
+//onchange post tags, as add new tag, post to join table
+// stores as a tags with values
+// div
   
 
   render() {
