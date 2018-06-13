@@ -13,6 +13,14 @@ class ProblemForm extends Component {
       .then(data => this.setState({tags: data}))
   }
 
+  resetForm = () => {
+    this.setState({
+      title: '',
+      body: '',
+      showResponse: false
+    })
+  }
+
   handleFormChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -21,9 +29,10 @@ class ProblemForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this
-      .props
-      .updateForm(this.state)
+    this.props.updateForm(this.state)
+    this.setState({
+      showResponse: true
+    })
     const randomUser = Math.floor(Math.random() * 5) + 1
     const currentDate = new Date().toJSON()
     const body = {
@@ -31,7 +40,7 @@ class ProblemForm extends Component {
       date: currentDate,
       problem_title: this.state.title,
       problem_text: this.state.body,
-      problem_solved: false
+      problem_solved: false,
     }
     return fetch(apiUrl + 'problems', {
       method: 'POST',
@@ -39,12 +48,14 @@ class ProblemForm extends Component {
         body: JSON.stringify(body)
       })
       .then(response => response.json())
-      .then(response => {
-        return response.error
+      .then(data => {
+        return data.error
           ? this.setState({error: true})
           : this.setState({error: false})
       })
   }
+
+  
 
   render() {
     return (
@@ -76,13 +87,12 @@ class ProblemForm extends Component {
             multiple
             search
             selection
-            //do this in fetch, variables as options
             options={this.state.tags
             ? this
               .state
               .tags
               .map((tag, i) => {
-                return {key: i, value: tag, text: tag}
+                return {key: i, value: tag.tag_name, text: tag.tag_name}
               })
             : ''}/>
         </Form.Field>

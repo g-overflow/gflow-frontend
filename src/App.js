@@ -4,7 +4,7 @@ import React, {
 import Navbar from './components/Navbar';
 import ButtonGroup from './components/ButtonGroup';
 import ProblemForm from './components/ProblemForm';
-import NewComment from './components/NewComment'
+import NewComment from './components/AddComment'
 import Footer from './components/Footer'
 import './App.css';
 
