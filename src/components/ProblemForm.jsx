@@ -52,13 +52,10 @@ class ProblemForm extends Component {
         return data.error
           ? this.setState({error: true})
           : this.setState({error: false})
+      }).then(res => {
+        this.props.redirectToProblem()
       })
   }
-
-//onchange post tags, as add new tag, post to join table
-// stores as a tags with values
-// div
-  
 
   render() {
     return (

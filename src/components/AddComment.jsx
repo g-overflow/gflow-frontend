@@ -1,12 +1,13 @@
 // sample comment: Pass a function down via props that will update state at the app level. Trigger that function upon form submission and toggle the state at the app level. When state updates, the component is re-rendered.
 
 import React from 'react'
-import {Form, Button, TextArea} from 'semantic-ui-react'
+import {Form, Button, TextArea, Header} from 'semantic-ui-react'
 const commentsUrl = "https://galvanize-queue-overflow.herokuapp.com/comments"
 
 export default class CommentComposer extends React.Component {
   state = {
-   comment: ''
+    comment: '',
+    commentSuccess: false
   }
   handleCommentChange = (event) => {
    this.setState({
@@ -32,28 +33,37 @@ export default class CommentComposer extends React.Component {
     })
         .then(response => response.json())
         .then(response => {
-            response.error
+            return response.error
                 ? this.setState({ error: true })
                 : this.setState({ error: false })
+      }).then(response => {
+        this.setState({commentSuccess: true})
+        setTimeout(() => {
+          this.setState({ commentSuccess: false })
+        }, 5000);
+        this.props.updateComment()
+        this.setState({ comment: '' })
       })
-    this.props.updateComment()
   }
 
   render() {
     return (
-        <Form className='comment-container'>
-         <Form.Field>
-         <TextArea
+      <Form className='comment-container'>
+        <Form.Field>
+          <TextArea
             name='comment'
             placeholder='Add a comment'
             style={{
-            minHeight: 100
-          }}
-           value={this.state.comment}
-           onChange={this.handleCommentChange}/>
-          </Form.Field>
-         <Button color="black" type='submit' onClick={this.handleCommentSubmit}>Submit Comment</Button>
-        </Form>
+              minHeight: 100
+            }}
+            value={this.state.comment}
+            onChange={this.handleCommentChange} />
+        </Form.Field>
+        <Button color="black" type='submit' onClick={this.handleCommentSubmit}>Submit Comment</Button>
+        <div>
+          {this.state.commentSuccess ? <Header as="h3" color="green">Your comment was successfully submitted!</Header> : ''}
+        </div>
+      </Form>
     )
   }
 }
