@@ -53,21 +53,19 @@ class App extends Component {
     });
   };
 
-  redirectToProblem = () => {
-    this.getNextId()
+  redirectToProblem = id => {
+    return this.setState({ routeId: id, fireRedirect: true });
   };
   getNextId = () => {
     fetch(`http://galvanize-queue-overflow.herokuapp.com/problems/`)
       .then(res => res.json())
       .then(problems => {
-        return problems[problems.length - 1]['id']
-      }).then(id => {
-        return this.setState({ routeId: id })
+        return problems[problems.length - 1]["id"];
       })
-      .then(res => {
-        this.setState({ fireRedirect: true });
+      .then(id => {
+        return this.setState({ routeId: id });
       })
-  }
+  };
   render() {
     return (
       <div className="App">
@@ -83,7 +81,9 @@ class App extends Component {
           updateForm={this.updateForm}
         />
         <Footer />
-        {this.state.fireRedirect && <Redirect to={`/problems/${this.state.routeId}`} />}
+        {this.state.fireRedirect && (
+          <Redirect to={`/problems/${this.state.routeId}`} />
+        )}
       </div>
     );
   }
