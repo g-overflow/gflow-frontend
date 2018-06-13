@@ -4,6 +4,7 @@ import Problem from "./Problem";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
 const url = "https://galvanize-queue-overflow.herokuapp.com/problems/";
+const id = window.location.href.split("/");
 
 export default class ProblemContainer extends React.Component {
   state = {
@@ -14,7 +15,6 @@ export default class ProblemContainer extends React.Component {
 
   }
   fetchProblem = () => {
-    let id = window.location.href.split("/");
     fetch(`${url}${id[id.length - 1]}`)
       .then(res => res.json())
       .then(problemData => {
@@ -22,19 +22,23 @@ export default class ProblemContainer extends React.Component {
       })
     this.fetchComments(id)
   }
-  fetchComments = (id) => {
+  fetchComments = () => {
     fetch(`${url}comments/${id[id.length - 1]}`)
       .then(res => res.json())
       .then(commentData => {
+        console.log(commentData);
         this.setState({ comments: commentData })
       })
+  }
+  updateComment = () => {
+    this.fetchComments();
   }
   render() {
     return (
       <React.Fragment>
         <Navbar/>
         {this.state.problem ? <Problem problemData={this.state.problem} /> : ''}
-        <AddComment />
+        <AddComment updateComment={this.updateComment}/>
         {this.state.comments.length > 0
           ?
           <div>
