@@ -18,6 +18,8 @@ class Navbar extends Component {
         <Menu attached inverted pointing secondary >
         <img src={GLogo} alt="Galvanize Logo"/>
           <Menu.Item
+            as={NavLink}
+            to="/"
             name="home"
             active={activeItem === "home"}
             onClick={this.handleItemClick}/>
