@@ -14,7 +14,7 @@ export default class ProblemContainer extends React.Component {
     this.fetchProblem();
   }
   fetchProblem = () => {
-    fetch(`${url}problems/${id[id.length - 1]}`)
+    fetch(`${url}problems/${this.props.match.params.problemId}`)
       .then(res => res.json())
       .then(problemData => {
         this.setState({ problem: problemData });
@@ -62,7 +62,11 @@ export default class ProblemContainer extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        {this.state.problem ? <Problem tags={this.state.tags} problemData={this.state.problem} /> : ""}
+        {this.state.problem ? (
+          <Problem tags={this.state.tags} problemData={this.state.problem} />
+        ) : (
+          ""
+        )}
         <AddComment updateComment={this.updateComment} />
         {this.state.comments.length > 0 ? (
           <div>
