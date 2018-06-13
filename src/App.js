@@ -1,11 +1,10 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import ButtonGroup from "./components/ButtonGroup";
 import ProblemForm from "./components/ProblemForm";
 import Footer from "./components/Footer";
 import "./App.css";
+import { Redirect } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -34,52 +33,57 @@ class App extends Component {
   // }
   updateForm = formInput => {
     this.setState({
-      problem: formInput
-    })
-  }
+      problem: formInput,
+      fireRedirect: false
+    });
+  };
 
-  updateComment = (commentInput) => {
+  updateComment = commentInput => {
     this.setState({
       comment: commentInput
-    })
-  }
+    });
+  };
 
-  logOut = (e) => {
+  logOut = e => {
     window.Cookies.remove("galvanize-secrets-token");
-    e.preventDefault()
+    e.preventDefault();
     this.setState({
       token: undefined,
       loggedIn: false
     });
-    console.log(
-      "token",
-      this.state.token,
-      "loggedIn",
-      this.state.loggedIn
-    );
   };
 
+  redirectToProblem = () => {
+    this.getNextId()
+  };
+  getNextId = () => {
+    fetch(`http://galvanize-queue-overflow.herokuapp.com/problems/`)
+      .then(res => res.json())
+      .then(problems => {
+        return problems[problems.length - 1]['id']
+      }).then(id => {
+        return this.setState({ routeId: id })
+      })
+      .then(res => {
+        this.setState({ fireRedirect: true });
+      })
+  }
   render() {
-    console.log(document.cookie);
-    return ( 
-    <div className = "App">
-      <Navbar token = {
-        this.state.token
-      }
-      loggedIn = {
-        this.state.loggedIn
-      }
-      logOutUser = {
-        this.logOut
-      }/> 
-      <ButtonGroup />
-      <ProblemForm formState = {
-        this.state
-      }
-      updateForm = {
-        this.updateForm
-      }/> 
-      <Footer />
+    return (
+      <div className="App">
+        <Navbar
+          token={this.state.token}
+          loggedIn={this.state.loggedIn}
+          logOutUser={this.logOut}
+        />
+        <ButtonGroup />
+        <ProblemForm
+          redirectToProblem={this.redirectToProblem}
+          formState={this.state}
+          updateForm={this.updateForm}
+        />
+        <Footer />
+        {this.state.fireRedirect && <Redirect to={`/problems/${this.state.routeId}`} />}
       </div>
     );
   }

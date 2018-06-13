@@ -60,4 +60,14 @@ div.ui.inverted.segment.navbar {
   margin: 0 auto;
   padding: 4em;
   text-align: left;
+  border: 1px gray solid;
+}
+
+.problem-container {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  padding: 4em;
+  text-align: left;
+  border: 1px gray solid;
 }
