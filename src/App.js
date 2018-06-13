@@ -51,17 +51,21 @@ class App extends Component {
       token: undefined,
       loggedIn: false
     });
-    console.log("token", this.state.token, "loggedIn", this.state.loggedIn);
   };
 
   redirectToProblem = () => {
-    this.setState({ fireRedirect: true });
+    this.getNextId()
   };
   getNextId = () => {
     fetch(`http://galvanize-queue-overflow.herokuapp.com/problems/`)
       .then(res => res.json())
       .then(problems => {
         return problems[problems.length - 1]['id']
+      }).then(id => {
+        return this.setState({ routeId: id })
+      })
+      .then(res => {
+        this.setState({ fireRedirect: true });
       })
   }
   render() {
@@ -79,7 +83,7 @@ class App extends Component {
           updateForm={this.updateForm}
         />
         <Footer />
-        {this.state.fireRedirect && <Redirect to={`/problems/${this.getNextId()}`} />}
+        {this.state.fireRedirect && <Redirect to={`/problems/${this.state.routeId}`} />}
       </div>
     );
   }

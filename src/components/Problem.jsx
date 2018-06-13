@@ -11,7 +11,15 @@ class Problem extends React.Component {
         </Header>
         <p>{this.props.problemData ? this.props.problemData.problem_text : "??"}</p>
         <Label.Group color="orange">
-          <Label as="a">Tag</Label>
+          {
+            this.props.tags
+              ?
+                this.props.tags.map(tag => {
+                  return <Label as="a">{tag.tag_name}</Label>
+                })
+              :
+              ''
+          }
         </Label.Group>
       </Container>
     );

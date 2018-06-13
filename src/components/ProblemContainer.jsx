@@ -22,17 +22,37 @@ export default class ProblemContainer extends React.Component {
     this.fetchComments();
   };
   fetchComments = () => {
-    console.log('hello');
-
+    console.log("hello");
     fetch(`${url}comments/`)
       .then(res => res.json())
       .then(commentData => {
         let filteredComments = commentData.filter(comment => {
           return comment.problem_id == id[id.length - 1];
-        })
+        });
         this.setState({ comments: filteredComments });
-        console.log(this.state.comments);
-
+      })
+      .then(this.fetchTags);
+  };
+  fetchTags = () => {
+    fetch(`http://galvanize-queue-overflow.herokuapp.com/problem/tags`)
+      .then(res => res.json())
+      .then(tagProblems => {
+        fetch(`http://galvanize-queue-overflow.herokuapp.com/tags`)
+          .then(res => res.json())
+          .then(tags => {
+            let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
+              if (curr["problem_id"] == this.state.problem["id"]) {
+                let currTagInfo = {
+                  tag_id: curr.tag_id,
+                  problem_id: curr.problem_id,
+                  tag_name: tags[curr.tag_id - 1]["tag_name"]
+                };
+                acc.push(currTagInfo);
+              }
+              return acc;
+            }, []);
+            this.setState({ tags: currentProblemsTags });
+          });
       });
   };
   updateComment = () => {
@@ -42,7 +62,7 @@ export default class ProblemContainer extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        {this.state.problem ? <Problem problemData={this.state.problem} /> : ""}
+        {this.state.problem ? <Problem tags={this.state.tags} problemData={this.state.problem} /> : ""}
         <AddComment updateComment={this.updateComment} />
         {this.state.comments.length > 0 ? (
           <div>
