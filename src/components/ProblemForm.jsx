@@ -82,14 +82,16 @@ class ProblemForm extends Component {
           body: JSON.stringify(body)
         })
           .then(response => response.json())
-          .then(response => console.log(response))
+          .then(res => {
+            this.props.redirectToProblem()
+          })
       })
     })
-    // .then(response => {
-    //   response
-    //     ? console.log('success!')
-    //     : console.log('fail!')
-    // })
+      .then(data => {
+        return data.error
+          ? this.setState({ error: true })
+          : this.setState({ error: false })
+      })
   }
 
   addTags = (event) => {
@@ -105,7 +107,6 @@ class ProblemForm extends Component {
       })
     }
   }
-
 
   render() {
     return (
