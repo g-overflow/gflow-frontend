@@ -17,8 +17,6 @@ div.ui.inverted.segment.navbar {
 }
 
 .form-container {
-  width: 40%;
-  margin: 0 auto;
   padding: 4em;
   text-align: left;
 }
@@ -29,7 +27,7 @@ div.ui.inverted.segment.navbar {
 
 #navbar-container img {
   height: 3em;
-  padding-right: 2em;
+  /* padding-right: 2em; */
   color: orange;
 }
 
@@ -47,27 +45,68 @@ div.ui.inverted.segment.navbar {
   padding: 1em 3em;
 }
 
-.Site-content:after {
-  content: ‘\00a0’;
-  display: block;
-  margin-top: var( — space);
-  height: 0;
-  visibility: hidden;
-}
-
 .comment-container {
-  width: 40%;
-  margin: 0 auto;
+  margin: 2em auto;
   padding: 4em;
   text-align: left;
   border: 1px gray solid;
 }
 
 .problem-container {
-  width: 40%;
-  margin: 0 auto;
-  margin-bottom: 5%;
   padding: 4em;
   text-align: left;
   border: 1px gray solid;
+}
+
+.App-footer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: black;
+  color: white;
+  height: 5vh;
+  padding: 2em 0 3em 0;
+  font-family: 'Open Sans', sans-serif;
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+}
+
+.problem-text-container {
+  margin: 4em 2em;
+}
+
+[class*="col-"] {
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+.galv-logo {
+  margin-right: 3em;
+}
+
+.problem-tags {
+  margin-top: 6em;
+  margin-bottom: -3em;
+}
+
+.nav-links {
+  padding: 10em;
+}
+
+.submit-button {
+  margin-bottom: -3em;
 }

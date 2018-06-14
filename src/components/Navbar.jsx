@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Input, Menu, Segment} from "semantic-ui-react";
+import {Segment, Input, Menu, Grid} from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import GLogo from "../assets/g-logo-small.png"
 import GithubLogo from "../assets/github-logo.png"
@@ -14,32 +14,34 @@ class Navbar extends Component {
   render() {
     const {activeItem} = this.state;
     return (
-      <Segment className="navbar" inverted id="navbar-container">
-        <Menu attached inverted pointing secondary >
-        <img src={GLogo} alt="Galvanize Logo"/>
+      <Segment className="col-12 navbar" inverted id="navbar-container">
+        <Menu attached inverted pointing secondary>
+        <img src={GLogo} alt="Galvanize Logo" className="galv-logo"/>
           <Menu.Item
             as={NavLink}
             to="/"
             name="home"
+            className="nav-links"
             active={activeItem === "home"}
             onClick={this.handleItemClick}/>
           <Menu.Item
             as={NavLink}
             to="/problems"
-            name="problems"
+            name="questions"
+            className="nav-links"
             active={activeItem === "questions"}
             onClick={this.handleItemClick}/>
-          <Menu.Item
+          {/* <Menu.Item
             name="ask"
             active={activeItem === "ask"}
             onClick={this.handleItemClick}/>
           <Menu.Item
             name="users"
             active={activeItem === "users"}
-            onClick={this.handleItemClick}/>
-          <Menu.Item position="right">
+            onClick={this.handleItemClick}/> */}
+          {/* <Menu.Item position="right">
             <Input className="icon" icon="search" placeholder="Search..." id="searchbar"/>
-          </Menu.Item>
+          </Menu.Item> */}
           {
             this.props.token ?
               (
