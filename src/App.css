@@ -6,7 +6,7 @@
 body {
   text-align: center;
   height: 100%;
-  padding-bottom:5em;
+  padding-bottom: 5em;
 }
 
 div.ui.inverted.segment.navbar {
@@ -95,11 +95,11 @@ div.ui.inverted.segment.navbar {
   .col-8 {
     width: 66.66%;
   }
-  .col-8-front{
+  .col-8-front {
     width: 66.66%;
-    left:16.67%;
+    left: 16.67%;
     /* top:10%; */
-    position:absolute;
+    position: absolute;
   }
   .col-9 {
     width: 75%;
@@ -150,10 +150,14 @@ div.ui.inverted.segment.navbar {
 }
 
 #problem-instructions {
-  padding-bottom: 2em;
+  padding-bottom: 1em;
   font-size: 1.4em;
 }
 
 #problem-title {
   font-size: 2em;
+}
+
+#form-container {
+  margin: 5em 0 0 0;
 }
