@@ -36,23 +36,18 @@ export default class ProblemContainer extends React.Component {
   fetchTags = () => {
     fetch(`http://galvanize-queue-overflow.herokuapp.com/problem/tags`)
       .then(res => res.json())
-      .then(tagProblems => {
-        fetch(`http://galvanize-queue-overflow.herokuapp.com/tags`)
-          .then(res => res.json())
-          .then(tags => {
-            let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
-              if (curr["problem_id"] == this.state.problem["id"]) {
-                let currTagInfo = {
-                  tag_id: curr.tag_id,
-                  problem_id: curr.problem_id,
-                  tag_name: tags[curr.tag_id - 1]["tag_name"]
-                };
-                acc.push(currTagInfo);
-              }
-              return acc;
-            }, []);
-            this.setState({ tags: currentProblemsTags });
-          });
+      .then(problemTags => {
+        let uniqueProblems = {};
+        for (let problem of problemTags) {
+          if (uniqueProblems[problem.id]) {
+            if (!uniqueProblems[problem.id].includes(problem.tag_name)) {
+              uniqueProblems[problem.id].push(problem.tag_name);
+            }
+          } else {
+            uniqueProblems[problem.id] = [];
+            uniqueProblems[problem.id].push(problem.tag_name);
+          }
+        }
       });
   };
   updateComment = () => {
@@ -84,3 +79,24 @@ export default class ProblemContainer extends React.Component {
     );
   }
 }
+
+// fetch(`http://galvanize-queue-overflow.herokuapp.com/problem/tags`)
+//   .then(res => res.json())
+//   .then(tagProblems => {
+//     fetch(`http://galvanize-queue-overflow.herokuapp.com/tags`)
+//       .then(res => res.json())
+//       .then(tags => {
+//         let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
+//           if (curr["problem_id"] == this.state.problem["id"]) {
+//             let currTagInfo = {
+//               tag_id: curr.tag_id,
+//               problem_id: curr.problem_id,
+//               tag_name: tags[curr.tag_id - 1]["tag_name"]
+//             };
+//             acc.push(currTagInfo);
+//           }
+//           return acc;
+//         }, []);
+//         this.setState({ tags: currentProblemsTags });
+//       });
+//   });
