@@ -1,4 +1,4 @@
-// sample comment: Pass a function down via props that will update state at the app level. Trigger that function upon form submission and toggle the state at the app level. When state updates, the component is re-rendered.
+
 
 import React from 'react'
 import {Form, Button, TextArea, Header} from 'semantic-ui-react'

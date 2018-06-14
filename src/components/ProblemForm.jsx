@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input, TextArea, Form, Dropdown } from "semantic-ui-react";
+import { Button, Input, TextArea, Form, Dropdown, Responsive } from "semantic-ui-react";
 const apiUrl = "https://galvanize-queue-overflow.herokuapp.com/";
 class ProblemForm extends Component {
   state = {
@@ -107,8 +107,9 @@ class ProblemForm extends Component {
 
   render() {
     return (
+      <Responsive>
       <Form className="form-container">
-        <Form.Field>
+        <Form.Field mobile={16} tablet={8} computer={4}>
           <label>Title</label>
           <Input
             name="title"
@@ -118,7 +119,7 @@ class ProblemForm extends Component {
             onChange={this.handleFormChange}
           />
         </Form.Field>
-        <Form.Field onChange={this.handleFormChange}>
+        <Form.Field onChange={this.handleFormChange} mobile={16} tablet={8} computer={4}>
           <TextArea
             name="body"
             placeholder="Describe your programming problem in detail"
@@ -128,7 +129,7 @@ class ProblemForm extends Component {
             value={this.state.body}
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field mobile={16} tablet={8} computer={4}>
           <label>Tags</label>
           <Dropdown
             placeholder="Tags"
@@ -151,6 +152,7 @@ class ProblemForm extends Component {
           Submit Your Question
         </Button>
       </Form>
+      </Responsive>
     );
   }
 }

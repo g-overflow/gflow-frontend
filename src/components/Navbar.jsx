@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Input, Menu, Segment} from "semantic-ui-react";
+import {Segment, Input, Menu, Grid} from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import GLogo from "../assets/g-logo-small.png"
 import GithubLogo from "../assets/github-logo.png"
@@ -29,17 +29,17 @@ class Navbar extends Component {
             name="problems"
             active={activeItem === "questions"}
             onClick={this.handleItemClick}/>
-          <Menu.Item
+          {/* <Menu.Item
             name="ask"
             active={activeItem === "ask"}
             onClick={this.handleItemClick}/>
           <Menu.Item
             name="users"
             active={activeItem === "users"}
-            onClick={this.handleItemClick}/>
-          <Menu.Item position="right">
+            onClick={this.handleItemClick}/> */}
+          {/* <Menu.Item position="right">
             <Input className="icon" icon="search" placeholder="Search..." id="searchbar"/>
-          </Menu.Item>
+          </Menu.Item> */}
           {
             this.props.token ?
               (

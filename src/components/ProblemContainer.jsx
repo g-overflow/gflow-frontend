@@ -8,7 +8,9 @@ const id = window.location.href.split("/");
 
 export default class ProblemContainer extends React.Component {
   state = {
-    comments: []
+    comments: [],
+    problem: {},
+    tagsArrays: []
   };
   componentDidMount() {
     this.fetchProblem();
@@ -26,29 +28,36 @@ export default class ProblemContainer extends React.Component {
     fetch(`${url}comments/`)
       .then(res => res.json())
       .then(commentData => {
+        console.log(commentData);
         let filteredComments = commentData.filter(comment => {
           return comment.problem_id == id[id.length - 1];
         });
+        console.log("filteredComments", filteredComments);
+
         this.setState({ comments: filteredComments });
       })
       .then(this.fetchTags);
   };
   fetchTags = () => {
-    fetch(`http://galvanize-queue-overflow.herokuapp.com/problem/tags`)
+    let uniqueProblems = {};
+    fetch(`https://galvanize-queue-overflow.herokuapp.com/problem/tags`)
       .then(res => res.json())
       .then(problemTags => {
-        let uniqueProblems = {};
         for (let problem of problemTags) {
-          if (uniqueProblems[problem.id]) {
-            if (!uniqueProblems[problem.id].includes(problem.tag_name)) {
-              uniqueProblems[problem.id].push(problem.tag_name);
-            }
+          if (uniqueProblems[problem.problem_id.toString()]) {
+            uniqueProblems[problem.problem_id.toString()].push(
+              problem.tag_name
+            );
           } else {
-            uniqueProblems[problem.id] = [];
-            uniqueProblems[problem.id].push(problem.tag_name);
+            uniqueProblems[problem.problem_id.toString()] = [];
+            uniqueProblems[problem.problem_id.toString()].push(
+              problem.tag_name
+            );
           }
         }
+        this.setState({ tagsArrays: uniqueProblems });
       });
+    // let thisProbsTags = uniqueProblems[this.state.problem.id]
   };
   updateComment = () => {
     this.fetchComments();
@@ -58,7 +67,10 @@ export default class ProblemContainer extends React.Component {
       <React.Fragment>
         <Navbar />
         {this.state.problem ? (
-          <Problem tags={this.state.tags} problemData={this.state.problem} />
+          <Problem
+            tags={this.state.tagsArrays}
+            problemData={this.state.problem}
+          />
         ) : (
           ""
         )}
