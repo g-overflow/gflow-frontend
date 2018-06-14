@@ -14,19 +14,21 @@ class Navbar extends Component {
   render() {
     const {activeItem} = this.state;
     return (
-      <Segment className="navbar" inverted id="navbar-container">
-        <Menu attached inverted pointing secondary >
-        <img src={GLogo} alt="Galvanize Logo"/>
+      <Segment className="col-12 navbar" inverted id="navbar-container">
+        <Menu attached inverted pointing secondary>
+        <img src={GLogo} alt="Galvanize Logo" className="galv-logo"/>
           <Menu.Item
             as={NavLink}
             to="/"
             name="home"
+            className="nav-links"
             active={activeItem === "home"}
             onClick={this.handleItemClick}/>
           <Menu.Item
             as={NavLink}
             to="/problems"
-            name="problems"
+            name="questions"
+            className="nav-links"
             active={activeItem === "questions"}
             onClick={this.handleItemClick}/>
           {/* <Menu.Item

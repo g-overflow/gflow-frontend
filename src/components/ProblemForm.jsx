@@ -109,7 +109,7 @@ class ProblemForm extends Component {
     return (
       <Responsive>
       <Form className="form-container">
-        <Form.Field mobile={16} tablet={8} computer={4}>
+        <Form.Field>
           <label>Title</label>
           <Input
             name="title"
@@ -119,17 +119,18 @@ class ProblemForm extends Component {
             onChange={this.handleFormChange}
           />
         </Form.Field>
-        <Form.Field onChange={this.handleFormChange} mobile={16} tablet={8} computer={4}>
+        <Form.Field onChange={this.handleFormChange}>
           <TextArea
+            className="col-3"
             name="body"
             placeholder="Describe your programming problem in detail"
             style={{
-              minHeight: 100
+              minHeight: 400
             }}
             value={this.state.body}
           />
         </Form.Field>
-        <Form.Field mobile={16} tablet={8} computer={4}>
+        <Form.Field>
           <label>Tags</label>
           <Dropdown
             placeholder="Tags"
@@ -147,7 +148,7 @@ class ProblemForm extends Component {
             }
           />
         </Form.Field>
-        <Button color="black" type="submit" onClick={this.postProblem}>
+        <Button color="orange" type="submit" onClick={this.postProblem} className='submit-button'>
           {" "}
           Submit Your Question
         </Button>
