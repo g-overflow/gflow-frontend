@@ -52,8 +52,8 @@ class ProblemList extends React.Component {
     return (
       <React.Fragment>
         <NavBar />
-        <Header as="h2">Open Issues</Header>
-        <div className="problem-container">
+        <Header as="h1" id="issue-title">Open Issues</Header>
+        <div>
           {
             this.state.problems
               ?

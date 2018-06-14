@@ -5,6 +5,8 @@
 
 body {
   text-align: center;
+  height: 100%;
+  padding-bottom: 5em;
 }
 
 div.ui.inverted.segment.navbar {
@@ -16,26 +18,11 @@ div.ui.inverted.segment.navbar {
   margin-left: 25em;
 }
 
-.form-container {
-  padding: 4em;
-  text-align: left;
-}
-
-.ui-buttons {
-  text-align: center;
-}
-
 #navbar-container img {
   height: 3em;
-  /* padding-right: 2em; */
-  color: orange;
 }
 
-#title-bar {
-  width: 34em;
-}
-
-#search-button {
+/* #search-button {
   margin: 2em;
   padding: 1em 3em;
 }
@@ -43,17 +30,19 @@ div.ui.inverted.segment.navbar {
 #ask-button {
   margin: 2em;
   padding: 1em 3em;
-}
+} */
 
 .comment-container {
   margin: 2em auto;
-  padding: 4em;
+  padding: 3em;
   text-align: left;
   border: 1px gray solid;
+  font-size: 1.2em;
 }
 
 .problem-container {
   padding: 4em;
+  margin: 1em 0;
   text-align: left;
   border: 1px gray solid;
 }
@@ -64,6 +53,7 @@ div.ui.inverted.segment.navbar {
   background-color: black;
   color: white;
   height: 5vh;
+  margin-top: 2em;
   padding: 2em 0 3em 0;
   font-family: 'Open Sans', sans-serif;
   position: fixed;
@@ -78,20 +68,51 @@ div.ui.inverted.segment.navbar {
 [class*="col-"] {
   width: 100%;
 }
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
-  .col-6 {width: 50%;}
-  .col-7 {width: 58.33%;}
-  .col-8 {width: 66.66%;}
-  .col-9 {width: 75%;}
-  .col-10 {width: 83.33%;}
-  .col-11 {width: 91.66%;}
-  .col-12 {width: 100%;}
+  .col-1 {
+    width: 8.33%;
+  }
+  .col-2 {
+    width: 16.66%;
+  }
+  .col-3 {
+    width: 25%;
+  }
+  .col-4 {
+    width: 33.33%;
+  }
+  .col-5 {
+    width: 41.66%;
+  }
+  .col-6 {
+    width: 50%;
+  }
+  .col-7 {
+    width: 58.33%;
+  }
+  .col-8 {
+    width: 66.66%;
+  }
+  .col-8-front {
+    width: 66.66%;
+    left: 16.67%;
+    /* top:10%; */
+    position: absolute;
+  }
+  .col-9 {
+    width: 75%;
+  }
+  .col-10 {
+    width: 83.33%;
+  }
+  .col-11 {
+    width: 91.66%;
+  }
+  .col-12 {
+    width: 100%;
+  }
 }
 
 .galv-logo {
@@ -99,7 +120,7 @@ div.ui.inverted.segment.navbar {
 }
 
 .problem-tags {
-  margin-top: 6em;
+  margin-top: 3em;
   margin-bottom: -3em;
 }
 
@@ -107,6 +128,36 @@ div.ui.inverted.segment.navbar {
   padding: 10em;
 }
 
-.submit-button {
-  margin-bottom: -3em;
+#comment-submit-button {
+  margin: 2em 0 2em 0;
+}
+
+#problem-submit-button {
+  margin: 2em 0 -1em 0;
+}
+
+#problem-text {
+  padding-top: 1.5em;
+  font-size: 1.2em;
+}
+
+#issue-title {
+  margin: 4em 0;
+}
+
+.problem-labels {
+  text-align: left;
+}
+
+#problem-instructions {
+  padding-bottom: 1em;
+  font-size: 1.4em;
+}
+
+#problem-title {
+  font-size: 2em;
+}
+
+#form-container {
+  margin: 5em 0 0 0;
 }

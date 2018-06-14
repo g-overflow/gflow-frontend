@@ -6,7 +6,7 @@ class Comment extends React.Component {
       <div>
         {
           this.props.commentData ?
-            <div className='col-7 comment-container'>{this.props.commentData.comment_text}</div>
+            <div className='col-6 comment-container'>{this.props.commentData.comment_text}</div>
             :
             ''
         }
