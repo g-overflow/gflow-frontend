@@ -107,7 +107,7 @@ class ProblemForm extends Component {
 
   render() {
     return (
-      <Form className="col-8-front form-container">
+      <Form className="col-8-front">
         <Header as="h1">Ask a Question</Header>
         <p id='problem-instructions'>Be as specific as possible. Give a concise title and add relative tags. Post any relevant code.</p>
         <Form.Field>
@@ -125,7 +125,7 @@ class ProblemForm extends Component {
             name="body"
             placeholder="Describe your programming problem in detail"
             style={{
-              minHeight: 200
+              minHeight: 150
             }}
             value={this.state.body}
           />
@@ -142,8 +142,8 @@ class ProblemForm extends Component {
             options={
               this.state.tags
                 ? this.state.tags.map((tag, i) => {
-                    return { key: i, value: tag.tag_name, text: tag.tag_name };
-                  })
+                  return { key: i, value: tag.tag_name, text: tag.tag_name };
+                })
                 : ""
             }
           />

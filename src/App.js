@@ -76,34 +76,35 @@ class App extends Component {
       })
   };
   render() {
-    return ( <div className = "App" >
-      <Navbar token = {
+    return (<div className="App" >
+      <Navbar token={
         this.state.token
       }
-      loggedIn = {
-        this.state.loggedIn
-      }
-      logOutUser = {
-        this.logOut
-      }/> 
-      { /* <ButtonGroup /> */ } 
-      <ProblemForm redirectToProblem = {
+        loggedIn={
+          this.state.loggedIn
+        }
+        logOutUser={
+          this.logOut
+        } />
+      { /* <ButtonGroup /> */}
+      <ProblemForm redirectToProblem={
         this.redirectToProblem
       }
-      formState = {
-        this.state
-      }
-      updateForm = {
-        this.updateForm
-      }/> 
-      <Footer / > {
-        this.state.fireRedirect && ( <
-          Redirect to = {
+        formState={
+          this.state
+        }
+        updateForm={
+          this.updateForm
+        } />
+      <Footer />
+      {
+        this.state.fireRedirect && (<
+          Redirect to={
             `/problems/${this.state.routeId}`
-          }/>
+          } />
         )
-      } 
-      </div>
+      }
+    </div>
     );
   }
 }
