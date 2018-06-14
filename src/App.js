@@ -1,10 +1,14 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import Navbar from "./components/Navbar";
-import ButtonGroup from "./components/ButtonGroup";
+// import ButtonGroup from "./components/ButtonGroup";
 import ProblemForm from "./components/ProblemForm";
 import Footer from "./components/Footer";
 import "./App.css";
-import { Redirect } from "react-router-dom";
+import {
+  Redirect
+} from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -54,7 +58,10 @@ class App extends Component {
   };
 
   redirectToProblem = id => {
-    return this.setState({ routeId: id, fireRedirect: true });
+    return this.setState({
+      routeId: id,
+      fireRedirect: true
+    });
   };
   getNextId = () => {
     fetch(`https://galvanize-queue-overflow.herokuapp.com/problems/`)
@@ -63,27 +70,39 @@ class App extends Component {
         return problems[problems.length - 1]["id"];
       })
       .then(id => {
-        return this.setState({ routeId: id });
+        return this.setState({
+          routeId: id
+        });
       })
   };
   render() {
-    return (
-      <div className="App">
-        <Navbar
-          token={this.state.token}
-          loggedIn={this.state.loggedIn}
-          logOutUser={this.logOut}
-        />
-        <ButtonGroup />
-        <ProblemForm
-          redirectToProblem={this.redirectToProblem}
-          formState={this.state}
-          updateForm={this.updateForm}
-        />
-        <Footer />
-        {this.state.fireRedirect && (
-          <Redirect to={`/problems/${this.state.routeId}`} />
-        )}
+    return ( <div className = "App" >
+      <Navbar token = {
+        this.state.token
+      }
+      loggedIn = {
+        this.state.loggedIn
+      }
+      logOutUser = {
+        this.logOut
+      }/> 
+      { /* <ButtonGroup /> */ } 
+      <ProblemForm redirectToProblem = {
+        this.redirectToProblem
+      }
+      formState = {
+        this.state
+      }
+      updateForm = {
+        this.updateForm
+      }/> 
+      <Footer / > {
+        this.state.fireRedirect && ( <
+          Redirect to = {
+            `/problems/${this.state.routeId}`
+          }/>
+        )
+      } 
       </div>
     );
   }

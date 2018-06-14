@@ -48,7 +48,7 @@ export default class CommentComposer extends React.Component {
 
   render() {
     return (
-      <Form className='col-8 comment-container'>
+      <Form className='col-7 comment-container'>
         <Form.Field>
           <TextArea
             name="comment"

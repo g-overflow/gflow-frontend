@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input, TextArea, Form, Dropdown, Responsive } from "semantic-ui-react";
+import { Button, Input, TextArea, Form, Dropdown, Header } from "semantic-ui-react";
 const apiUrl = "https://galvanize-queue-overflow.herokuapp.com/";
 class ProblemForm extends Component {
   state = {
@@ -107,10 +107,11 @@ class ProblemForm extends Component {
 
   render() {
     return (
-      <Responsive>
-      <Form className="col-7 form-container">
+      <Form className="col-8-front form-container">
+        <Header as="h1">Ask a Question</Header>
+        <p id='problem-instructions'>Be as specific as possible. Give a concise title and add relative tags. Post any relevant code.</p>
         <Form.Field>
-          <label>Title</label>
+          <label className="problem-labels">Title</label>
           <Input
             name="title"
             placeholder="Title"
@@ -124,13 +125,13 @@ class ProblemForm extends Component {
             name="body"
             placeholder="Describe your programming problem in detail"
             style={{
-              minHeight: 250
+              minHeight: 200
             }}
             value={this.state.body}
           />
         </Form.Field>
         <Form.Field>
-          <label>Tags</label>
+          <label className="problem-labels">Tags</label>
           <Dropdown
             placeholder="Tags"
             fluid
@@ -147,12 +148,11 @@ class ProblemForm extends Component {
             }
           />
         </Form.Field>
-        <Button color="orange" type="submit" onClick={this.postProblem} id='problem-submit-button'>
+        <Button color="orange problem-labels" type="submit" onClick={this.postProblem} id='problem-submit-button'>
           {" "}
           Submit Your Question
         </Button>
       </Form>
-      </Responsive>
     );
   }
 }
