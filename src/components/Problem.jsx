@@ -11,15 +11,16 @@ class Problem extends React.Component {
   render() {
     return (
       <Container className="problem-container">
-        <Header as={NavLink} to={`/problems/${this.props.problemData.id}`}>
+        <Header as={NavLink} to={`/problems/${this.props.problemData.id}`} >
           {this.props.problemData
             ? this.props.problemData.problem_title
             : "broken"}
         </Header>
-        <p>
+        <hr />
+        <p id='problem-title'>
           {this.props.problemData ? this.props.problemData.problem_text : "??"}
         </p>
-        <Label.Group color="orange">
+        <Label.Group color="problem-tags orange">
           {this.props.tags && this.props.tags[this.props.problemData.id]
             ? this.logData()
             : ""}

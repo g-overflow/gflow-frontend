@@ -27,11 +27,6 @@ div.ui.inverted.segment.navbar {
 
 #navbar-container img {
   height: 3em;
-  color: orange;
-}
-
-#title-bar {
-  width: 34em;
 }
 
 #search-button {
@@ -53,6 +48,7 @@ div.ui.inverted.segment.navbar {
 
 .problem-container {
   padding: 4em;
+  margin: 1em 0;
   text-align: left;
   border: 1px gray solid;
 }
@@ -123,7 +119,7 @@ div.ui.inverted.segment.navbar {
 }
 
 .problem-tags {
-  margin-top: 6em;
+  margin-top: 3em;
   margin-bottom: -3em;
 }
 
@@ -133,4 +129,16 @@ div.ui.inverted.segment.navbar {
 
 #comment-submit-button {
   margin: 2em 0 -1em 0;
+}
+
+#problem-submit-button {
+  margin: 2em 0 -1em 0;
+}
+
+#problem-title {
+  padding-top: 1.5em;
+}
+
+#issue-title {
+  margin: 4em 0;
 }
