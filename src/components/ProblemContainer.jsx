@@ -34,10 +34,10 @@ export default class ProblemContainer extends React.Component {
       .then(this.fetchTags);
   };
   fetchTags = () => {
-    fetch(`http://galvanize-queue-overflow.herokuapp.com/problem/tags`)
+    fetch(`https://galvanize-queue-overflow.herokuapp.com/problem/tags`)
       .then(res => res.json())
       .then(tagProblems => {
-        fetch(`http://galvanize-queue-overflow.herokuapp.com/tags`)
+        fetch(`https://galvanize-queue-overflow.herokuapp.com/tags`)
           .then(res => res.json())
           .then(tags => {
             let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
@@ -65,8 +65,8 @@ export default class ProblemContainer extends React.Component {
         {this.state.problem ? (
           <Problem tags={this.state.tags} problemData={this.state.problem} />
         ) : (
-          ""
-        )}
+            ""
+          )}
         <AddComment updateComment={this.updateComment} />
         {this.state.comments.length > 0 ? (
           <div>
@@ -77,8 +77,8 @@ export default class ProblemContainer extends React.Component {
             })}
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
         <Comment />
       </React.Fragment>
     );

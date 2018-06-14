@@ -57,7 +57,7 @@ class App extends Component {
     return this.setState({ routeId: id, fireRedirect: true });
   };
   getNextId = () => {
-    fetch(`http://galvanize-queue-overflow.herokuapp.com/problems/`)
+    fetch(`https://galvanize-queue-overflow.herokuapp.com/problems/`)
       .then(res => res.json())
       .then(problems => {
         return problems[problems.length - 1]["id"];

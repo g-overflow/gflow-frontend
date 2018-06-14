@@ -18,10 +18,11 @@ class ProblemList extends React.Component {
       .then(problems => {
         return this.setState({ problems: problems });
       }).then(() => {
-        fetch(`http://galvanize-queue-overflow.herokuapp.com/problem/tags`)
+
+        fetch(`https://galvanize-queue-overflow.herokuapp.com/problem/tags`)
           .then(res => res.json())
           .then(tagProblems => {
-            fetch(`http://galvanize-queue-overflow.herokuapp.com/tags`)
+            fetch(`https://galvanize-queue-overflow.herokuapp.com/tags`)
               .then(res => res.json())
               .then(tags => {
                 let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
