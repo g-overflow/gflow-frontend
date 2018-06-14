@@ -10,6 +10,7 @@ const Router = () => (
       <Route exact path="/" component={App} />
       <Route exact path="/problems/:problemId" component={ProblemContainer} />
       <Route path="/problems" component={ProblemList} />
+      <Route path="/queries/:query?" component={ProblemList} />
     </Switch>
   </BrowserRouter>
 );
