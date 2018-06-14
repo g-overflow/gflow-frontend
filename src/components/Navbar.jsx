@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Segment, Input, Menu, Grid} from "semantic-ui-react";
+import {Segment, Menu,} from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import GLogo from "../assets/g-logo-small.png"
 import GithubLogo from "../assets/github-logo.png"

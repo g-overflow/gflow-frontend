@@ -18,27 +18,24 @@ class ProblemList extends React.Component {
       .then(problems => {
         return this.setState({ problems: problems });
       }).then(() => {
-
+        let uniqueProblems = {};
         fetch(`https://galvanize-queue-overflow.herokuapp.com/problem/tags`)
           .then(res => res.json())
-          .then(tagProblems => {
-            fetch(`https://galvanize-queue-overflow.herokuapp.com/tags`)
-              .then(res => res.json())
-              .then(tags => {
-                let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
-                  if (curr["problem_id"] == this.state.problem["id"]) {
-                    let currTagInfo = {
-                      tag_id: curr.tag_id,
-                      problem_id: curr.problem_id,
-                      tag_name: tags[curr.tag_id - 1]["tag_name"]
-                    };
-                    acc.push(currTagInfo);
-                  }
-                  return acc;
-                }, []);
-                this.setState({ tags: currentProblemsTags });
-              });
-          })
+          .then(problemTags => {
+            for (let problem of problemTags) {
+              if (uniqueProblems[problem.problem_id.toString()]) {
+                uniqueProblems[problem.problem_id.toString()].push(
+                  problem.tag_name
+                );
+              } else {
+                uniqueProblems[problem.problem_id.toString()] = [];
+                uniqueProblems[problem.problem_id.toString()].push(
+                  problem.tag_name
+                );
+              }
+            }
+            this.setState({ tagsArrays: uniqueProblems });
+          });
       })
   }
 
@@ -47,16 +44,18 @@ class ProblemList extends React.Component {
       <React.Fragment>
         <NavBar />
         <Header as="h2">Open Issues</Header>
-        <div>
-          {this.state.problems
-            ?
-            this.state.problems.map((problem, i) => {
-              return <Problem key={i} problem={problem} />
-            })
-            : ''}
+        <div className="problem-container">
+          {
+            this.state.problems
+              ?
+              this.state.problems.map((problem, i) => {
+                return <Problem key={i} tags={this.state.tagsArrays} problemData={problem} />
+              })
+              :
+              ''
+          }
         </div>
       </React.Fragment >
-
     )
   }
 }
