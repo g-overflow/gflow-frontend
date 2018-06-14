@@ -30,6 +30,7 @@ export default class ProblemContainer extends React.Component {
       .then(commentData => {
         console.log(commentData);
         let filteredComments = commentData.filter(comment => {
+          // eslint-disable-next-line
           return comment.problem_id == id[id.length - 1];
         });
         console.log("filteredComments", filteredComments);
