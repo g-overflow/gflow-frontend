@@ -108,7 +108,7 @@ class ProblemForm extends Component {
   render() {
     return (
       <Responsive>
-      <Form className="form-container">
+      <Form className="col-7 form-container">
         <Form.Field>
           <label>Title</label>
           <Input
@@ -121,11 +121,10 @@ class ProblemForm extends Component {
         </Form.Field>
         <Form.Field onChange={this.handleFormChange}>
           <TextArea
-            className="col-3"
             name="body"
             placeholder="Describe your programming problem in detail"
             style={{
-              minHeight: 400
+              minHeight: 250
             }}
             value={this.state.body}
           />
@@ -148,7 +147,7 @@ class ProblemForm extends Component {
             }
           />
         </Form.Field>
-        <Button color="orange" type="submit" onClick={this.postProblem} className='submit-button'>
+        <Button color="orange" type="submit" onClick={this.postProblem} id='problem-submit-button'>
           {" "}
           Submit Your Question
         </Button>

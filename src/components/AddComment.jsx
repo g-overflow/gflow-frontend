@@ -48,7 +48,7 @@ export default class CommentComposer extends React.Component {
 
   render() {
     return (
-      <Form className='col-5 comment-container'>
+      <Form className='col-8 comment-container'>
         <Form.Field>
           <TextArea
             name='comment'
@@ -59,7 +59,7 @@ export default class CommentComposer extends React.Component {
             value={this.state.comment}
             onChange={this.handleCommentChange} />
         </Form.Field>
-        <Button color="orange" type='submit' onClick={this.handleCommentSubmit} className='submit-button'>Submit Comment</Button>
+        <Button color="orange" type='submit' onClick={this.handleCommentSubmit} id='comment-submit-button'>Submit Comment</Button>
         <div>
           {this.state.commentSuccess ? <Header as="h3" color="green">Your comment was successfully submitted!</Header> : ''}
         </div>
