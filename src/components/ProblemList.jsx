@@ -26,6 +26,7 @@ class ProblemList extends React.Component {
               .then(res => res.json())
               .then(tags => {
                 let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
+                  // eslint-disable-next-line
                   if (curr["problem_id"] == this.state.problem["id"]) {
                     let currTagInfo = {
                       tag_id: curr.tag_id,

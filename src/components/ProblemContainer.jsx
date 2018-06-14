@@ -27,6 +27,7 @@ export default class ProblemContainer extends React.Component {
       .then(res => res.json())
       .then(commentData => {
         let filteredComments = commentData.filter(comment => {
+          // eslint-disable-next-line
           return comment.problem_id == id[id.length - 1];
         });
         this.setState({ comments: filteredComments });
@@ -41,6 +42,7 @@ export default class ProblemContainer extends React.Component {
           .then(res => res.json())
           .then(tags => {
             let currentProblemsTags = tagProblems.reduce((acc, curr, i) => {
+              // eslint-disable-next-line
               if (curr["problem_id"] == this.state.problem["id"]) {
                 let currTagInfo = {
                   tag_id: curr.tag_id,
