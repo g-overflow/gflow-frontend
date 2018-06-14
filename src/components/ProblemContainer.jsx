@@ -75,7 +75,7 @@ export default class ProblemContainer extends React.Component {
         ) : (
           ""
         )}
-        <AddComment updateComment={this.updateComment} />
+        <AddComment problemId={this.state.problem.id} updateComment={this.updateComment} />
         {this.state.comments.length > 0 ? (
           <div>
             {this.state.comments.map((singleComment, i) => {
