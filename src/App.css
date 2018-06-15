@@ -165,38 +165,40 @@ div.ui.inverted.segment.navbar {
 .about-cards {
   width: 80%;
   position: relative;
-  margin: auto 0;
-  left: 20%;
-  top: 25%;
+  margin: 2em 0 2em 0;
+  left: 10%;
+  top: 40%;
   display: flex;
-  justify-content: space-evenly; 
-  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
 }
 
-#coleman-card, #alex-card {
+#coleman-card,
+#alex-card {
   margin: 1em 0;
 }
 
-#message-container > * {
- padding: 0.5em 0;
+#message-container>* {
+  padding: 0.5em 0;
 }
 
-input[name="searchTerm"] { 
+input[name="searchTerm"] {
   width: 70%;
 }
-/* .about-cards > div {
-  margin: 2em;
-} */
-/* 
-pre {
-  background-color: rgba(198, 196, 196, 0.776);
-  padding: 2em;
-  font-family: 'Source Code Pro', monospace;
-} */
 
 pre {
-  background-color:black;
+  background-color: black;
   color: orange;
   padding: 2em;
   font-family: 'Source Code Pro', monospace;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+#about-header {
+  margin-top: 3em;
+  margin-bottom: 5em;
+  margin-right: 3em;
 }
