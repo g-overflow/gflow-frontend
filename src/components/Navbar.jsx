@@ -49,6 +49,13 @@ class Navbar extends Component {
             className="nav-links"
             active={activeItem === "questions"}
             onClick={this.handleItemClick} />
+            <Menu.Item
+            as={NavLink}
+            to="/about"
+            name="about"
+            className="nav-links"
+            active={activeItem === "about"}
+            onClick={this.handleItemClick} />
           <Menu.Item position="right">
             <Input
               onChange={this.handleChange}
