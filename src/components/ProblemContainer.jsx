@@ -26,17 +26,13 @@ export default class ProblemContainer extends React.Component {
     this.fetchComments();
   };
   fetchComments = () => {
-    console.log("hello");
     fetch(`${url}comments/`)
       .then(res => res.json())
       .then(commentData => {
-        console.log(commentData);
         let filteredComments = commentData.filter(comment => {
           // eslint-disable-next-line
           return comment.problem_id == id[id.length - 1];
         });
-        console.log("filteredComments", filteredComments);
-
         this.setState({ comments: filteredComments });
       })
       .then(this.fetchTags);
