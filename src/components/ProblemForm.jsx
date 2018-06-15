@@ -165,8 +165,8 @@ class ProblemForm extends Component {
                 })
               : ""} />
         </Form.Field>
-        // eslint-disable-next-line
         <Button
+          // eslint-disable-next-line
           color="orange problem-labels"
           type="submit"
           onClick={this.postProblem}
