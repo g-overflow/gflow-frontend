@@ -21,18 +21,22 @@ export default class ProblemContainer extends React.Component {
       .then(res => res.json())
       .then(problemData => {
         this.setState({ problem: problemData });
-        this.setState({problemText: problemData.problem_text})
+        this.setState({ problemText: problemData.problem_text })
       });
     this.fetchComments();
   };
   fetchComments = () => {
+    console.log("hello");
     fetch(`${url}comments/`)
       .then(res => res.json())
       .then(commentData => {
+        console.log(commentData);
         let filteredComments = commentData.filter(comment => {
           // eslint-disable-next-line
           return comment.problem_id == id[id.length - 1];
         });
+        console.log("filteredComments", filteredComments);
+
         this.setState({ comments: filteredComments });
       })
       .then(this.fetchTags);
@@ -71,8 +75,8 @@ export default class ProblemContainer extends React.Component {
             problemData={this.state.problem}
           />
         ) : (
-          ""
-        )}
+            ""
+          )}
         <AddComment problemId={this.state.problem.id} updateComment={this.updateComment} />
         {this.state.comments.length > 0 ? (
           <div>
@@ -83,8 +87,8 @@ export default class ProblemContainer extends React.Component {
             })}
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
         <Comment />
       </React.Fragment>
     );
