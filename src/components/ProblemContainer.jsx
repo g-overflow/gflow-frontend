@@ -21,7 +21,7 @@ export default class ProblemContainer extends React.Component {
       .then(res => res.json())
       .then(problemData => {
         this.setState({ problem: problemData });
-        this.setState({problemText: problemData.problem_text})
+        this.setState({ problemText: problemData.problem_text })
       });
     this.fetchComments();
   };
@@ -75,8 +75,8 @@ export default class ProblemContainer extends React.Component {
             problemData={this.state.problem}
           />
         ) : (
-          ""
-        )}
+            ""
+          )}
         <AddComment problemId={this.state.problem.id} updateComment={this.updateComment} />
         {this.state.comments.length > 0 ? (
           <div>
@@ -87,8 +87,8 @@ export default class ProblemContainer extends React.Component {
             })}
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
         <Comment />
       </React.Fragment>
     );
