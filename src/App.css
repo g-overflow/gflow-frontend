@@ -160,6 +160,7 @@ div.ui.inverted.segment.navbar {
 
 #form-container {
   padding: 5em 0 0 0;
+<<<<<<< HEAD
   background-color: orange;
 }
 
@@ -186,3 +187,10 @@ div.ui.inverted.segment.navbar {
 /* .about-cards > div {
   margin: 2em;
 } */
+=======
+}
+
+input[name="searchTerm"] { 
+  width: 70%;
+}
+>>>>>>> 6db3f2018dd01e27e55cf46fb2b258dfe173dada
