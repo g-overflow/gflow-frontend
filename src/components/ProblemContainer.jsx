@@ -10,7 +10,8 @@ export default class ProblemContainer extends React.Component {
   state = {
     comments: [],
     problem: {},
-    tagsArrays: []
+    tagsArrays: [],
+    problemText: ''
   };
   componentDidMount() {
     this.fetchProblem();
@@ -20,6 +21,7 @@ export default class ProblemContainer extends React.Component {
       .then(res => res.json())
       .then(problemData => {
         this.setState({ problem: problemData });
+        this.setState({problemText: problemData.problem_text})
       });
     this.fetchComments();
   };
@@ -58,11 +60,11 @@ export default class ProblemContainer extends React.Component {
         }
         this.setState({ tagsArrays: uniqueProblems });
       });
-    // let thisProbsTags = uniqueProblems[this.state.problem.id]
   };
   updateComment = () => {
     this.fetchComments();
   };
+
   render() {
     return (
       <React.Fragment>
