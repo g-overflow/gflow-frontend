@@ -96,7 +96,7 @@ class App extends Component {
         updateForm={
           this.updateForm
         } />
-      <Footer />
+      {/* <Footer /> */}
       {
         this.state.fireRedirect && (<
           Redirect to={

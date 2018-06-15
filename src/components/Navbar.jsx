@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import { Segment, Menu, Input } from "semantic-ui-react";
 import { NavLink, Redirect } from "react-router-dom";
-=======
-import React, {Component} from "react";
-import {Segment, Menu, Input} from "semantic-ui-react";
-import {NavLink, Redirect} from "react-router-dom";
->>>>>>> 6db3f2018dd01e27e55cf46fb2b258dfe173dada
 import GLogo from "../assets/g-logo-small.png"
 import GithubLogo from "../assets/github-logo.png"
 
@@ -21,13 +15,7 @@ class Navbar extends Component {
   }
   handleChange = (event) => {
     event.preventDefault();
-<<<<<<< HEAD
     this.setState({ [event.target.name]: [event.target.value] })
-=======
-    this.setState({
-      [event.target.name]: [event.target.value]
-    })
->>>>>>> 6db3f2018dd01e27e55cf46fb2b258dfe173dada
   }
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {

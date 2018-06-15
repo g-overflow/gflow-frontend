@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import {
   Button,
   Input,
@@ -18,11 +18,11 @@ class ProblemForm extends Component {
   componentDidMount() {
     fetch(apiUrl + "tags")
       .then(response => response.json())
-      .then(data => this.setState({tags: data}));
+      .then(data => this.setState({ tags: data }));
   }
 
   resetForm = () => {
-    this.setState({title: "", body: "", showResponse: false});
+    this.setState({ title: "", body: "", showResponse: false });
   };
 
   handleFormChange = event => {
@@ -35,7 +35,7 @@ class ProblemForm extends Component {
     this
       .props
       .updateForm(this.state);
-    this.setState({showResponse: true});
+    this.setState({ showResponse: true });
     const randomUser = Math.floor(Math.random() * 5) + 1;
     const currentDate = new Date().toJSON();
     const body = {
@@ -47,9 +47,9 @@ class ProblemForm extends Component {
     };
     return fetch(apiUrl + "problems", {
       method: "POST",
-      headers: new Headers({"content-type": "application/json"}),
-        body: JSON.stringify(body)
-      })
+      headers: new Headers({ "content-type": "application/json" }),
+      body: JSON.stringify(body)
+    })
       .then(response => response.json())
       .then(response => {
         return response.id;
@@ -92,15 +92,15 @@ class ProblemForm extends Component {
           };
           return fetch(apiUrl + "problem/tags", {
             method: "POST",
-            headers: new Headers({"content-type": "application/json"}),
-              body: JSON.stringify(body)
-            })
+            headers: new Headers({ "content-type": "application/json" }),
+            body: JSON.stringify(body)
+          })
             .then(response => response.json())
             .then(data => data)
             .then(data => {
               return data.error
-                ? this.setState({error: true})
-                : this.setState({error: false});
+                ? this.setState({ error: true })
+                : this.setState({ error: false });
             });
         });
       });
@@ -112,7 +112,7 @@ class ProblemForm extends Component {
       let elementText = event.target.parentNode.innerText;
       let tag = stateCopy.indexOf(elementText);
       stateCopy.splice(tag, 1);
-      this.setState({selectedTags: stateCopy});
+      this.setState({ selectedTags: stateCopy });
     } else {
       this.setState({
         selectedTags: this
@@ -128,7 +128,7 @@ class ProblemForm extends Component {
       <Form className="col-8-front" id="form-container">
         <Header as="h1">Ask a Question</Header>
         <p id='problem-instructions'>Be as specific as possible. Give a concise title
-          and add relative tags. Post any relevant code.</p>
+          and add relative tags. <br /> Post any relevant code wrapped in ``` (three backticks) ```</p>
         <Form.Field>
           <label className="problem-labels">Title</label>
           <Input
@@ -136,16 +136,16 @@ class ProblemForm extends Component {
             placeholder="Title"
             id="title-bar"
             value={this.state.title}
-            onChange={this.handleFormChange}/>
+            onChange={this.handleFormChange} />
         </Form.Field>
         <Form.Field onChange={this.handleFormChange}>
           <TextArea
             name="body"
             placeholder="Describe your programming problem in detail"
             style={{
-            minHeight: 150
-          }}
-            value={this.state.body}/>
+              minHeight: 150
+            }}
+            value={this.state.body} />
         </Form.Field>
         <Form.Field>
           <label className="problem-labels">Tags</label>
@@ -157,13 +157,13 @@ class ProblemForm extends Component {
             selection
             onChange={this.addTags}
             options={this.state.tags
-            ? this
-              .state
-              .tags
-              .map((tag, i) => {
-                return {key: i, value: tag.tag_name, text: tag.tag_name};
-              })
-            : ""}/>
+              ? this
+                .state
+                .tags
+                .map((tag, i) => {
+                  return { key: i, value: tag.tag_name, text: tag.tag_name };
+                })
+              : ""} />
         </Form.Field>
         <Button
           color="orange problem-labels"
