@@ -160,5 +160,8 @@ div.ui.inverted.segment.navbar {
 
 #form-container {
   padding: 5em 0 0 0;
-  background-color: orange;
+}
+
+input[name="searchTerm"] { 
+  width: 70%;
 }
