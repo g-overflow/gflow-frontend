@@ -14,8 +14,8 @@ div.ui.inverted.segment.navbar {
 }
 
 #searchbar {
-  /* width: 40em; */
-  /* margin-left: 25em; */
+  position: relative;
+  margin-left: 20em;
 }
 
 #navbar-container img {
@@ -162,3 +162,27 @@ div.ui.inverted.segment.navbar {
   padding: 5em 0 0 0;
   background-color: orange;
 }
+
+.about-cards {
+  width: 80%;
+  position: relative;
+  margin: auto 0;
+  left: 20%;
+  top: 25%;
+  display: flex;
+  justify-content: space-evenly; 
+  flex-wrap: wrap;
+}
+
+#coleman-card, #alex-card {
+  margin: 1em 0;
+}
+
+#message-container > * {
+ padding: 0.5em 0;
+}
+
+
+/* .about-cards > div {
+  margin: 2em;
+} */

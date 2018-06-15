@@ -67,8 +67,8 @@ export default class CommentComposer extends React.Component {
               Your comment was successfully submitted!
             </Header>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </div>
       </Form>
     );

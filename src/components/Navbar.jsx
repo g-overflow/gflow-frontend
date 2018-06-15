@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Segment, Menu, Input} from "semantic-ui-react";
+import React, { Component } from "react";
+import { Segment, Menu, Input } from "semantic-ui-react";
 import { NavLink, Redirect } from "react-router-dom";
 import GLogo from "../assets/g-logo-small.png"
 import GithubLogo from "../assets/github-logo.png"
@@ -15,7 +15,7 @@ class Navbar extends Component {
   }
   handleChange = (event) => {
     event.preventDefault();
-    this.setState({[event.target.name]: [event.target.value]})
+    this.setState({ [event.target.name]: [event.target.value] })
   }
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -24,33 +24,33 @@ class Navbar extends Component {
 
   }
   render() {
-    const {activeItem} = this.state;
+    const { activeItem } = this.state;
     if (this.state.redirect) {
       return (<Redirect to={{
-                pathname: '/queries/' + encodeURIComponent(this.state.searchTerm),
-                state: { searchTerm: this.state.searchTerm }
-            }} />)
+        pathname: '/queries/' + encodeURIComponent(this.state.searchTerm),
+        state: { searchTerm: this.state.searchTerm }
+      }} />)
     }
     return (
       <Segment className="col-12 navbar" inverted id="navbar-container">
         <Menu attached inverted pointing secondary>
-        <img src={GLogo} alt="Galvanize Logo" className="galv-logo"/>
+          <img src={GLogo} alt="Galvanize Logo" className="galv-logo" />
           <Menu.Item
             as={NavLink}
             to="/"
             name="home"
             className="nav-links"
             active={activeItem === "home"}
-            onClick={this.handleItemClick}/>
+            onClick={this.handleItemClick} />
           <Menu.Item
             as={NavLink}
             to="/problems"
             name="questions"
             className="nav-links"
             active={activeItem === "questions"}
-            onClick={this.handleItemClick}/>
+            onClick={this.handleItemClick} />
           <Menu.Item position="right">
-            <Input onChange={this.handleChange} onKeyPress={this.handleKeyPress} name="searchTerm" className="icon" value={this.state.searchTerm} icon="search" placeholder="Search..." id="searchbar"/>
+            <Input onChange={this.handleChange} onKeyPress={this.handleKeyPress} name="searchTerm" className="icon" value={this.state.searchTerm} icon="search" placeholder="Search..." id="searchbar" />
           </Menu.Item>
           {/* <Menu.Item
             name="ask"
@@ -67,7 +67,7 @@ class Navbar extends Component {
                   name="Log Out"
                   active={activeItem === "users"}
                   onClick={this.props.logOutUser}
-                position="right"/>
+                  position="right" />
               )
               :
               (
